@@ -1,27 +1,4 @@
-&pinctrl {
-    i2c2_default: i2c2_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 27)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 26)>;
-        };
-    };
-
-    i2c2_sleep: i2c2_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 27)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 26)>;
-            low-power-enable;
-        };
-    };
-};
-
 &i2c2 {
-    status = "okay";
-    compatible = "nordic,nrf-twim";
-    pinctrl-0 = <&i2c2_default>;
-    pinctrl-1 = <&i2c2_sleep>;
-    pinctrl-names = "default", "sleep";
-
     drv2605_0: drv2605@5a {
         compatible = "ti,drv2605";
         reg = <0x5a>;
@@ -29,7 +6,7 @@
         /* Library to use, 0 = Empty, 1-5 are ERM, 6 is LRA. */
         library = <2>;
 
-        /* switch to standby mode after idling for 1000ms */
+        /* Switch to standby mode after idling for 1000ms */
         standby-ms = <1000>;
     };
 };
